@@ -1,0 +1,34 @@
+name: Manual Release
+
+# Trigger manually with input options [cite: 43, 44]
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: "Select version bump type"
+        required: true
+        default: "patch"
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  tag-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to create tags
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: "0" # Required for tag history
+
+      # Calculate and push new tag based on input [cite: 45, 46]
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.64.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: ${{ inputs.bump_type }}
+          WITH_V: true

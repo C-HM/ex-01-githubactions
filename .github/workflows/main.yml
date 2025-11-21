@@ -16,9 +16,10 @@ jobs:
         run: pwd
 
       - name: 4) Lister les fichiers du projet.
-        run:
-          - name: 4.a) Checkout du code source
-            uses: actions/checkout@v5
+        run: echo "Début de la section 4"
 
-          - name: 4.b) Lister les fichiers du projet
-            run: ls -al
+      - name: 4.a) Checkout du code source
+        uses: actions/checkout@v5
+
+      - name: 4.b) Lister les fichiers du projet
+        run: ls -al

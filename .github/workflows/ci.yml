@@ -1,6 +1,6 @@
 name: CI Workflow
 
-# Trigger on push to main branch [cite: 26]
+# Trigger on push to main branch
 on:
   push:
     branches: ["main"]
@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
-      - uses: actions/checkout@v3
+      # 1. Checkout code (Updated to v4)
+      - uses: actions/checkout@v4
 
-      # 2. Install NodeJS [cite: 27]
+      # 2. Install NodeJS (Updated to v4)
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "18"
 
@@ -23,15 +23,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 4. Execute Lint [cite: 28]
+      # 4. Execute Lint
       - name: Run Lint
         run: npm run lint
 
-      # 5. Create Artifact [cite: 29]
-      # We are archiving the current directory (excluding node_modules via .gitignore usually,
-      # but here we explicitly select files or pack them).
+      # 5. Create Artifact (Updated to v4)
+      # v4 is faster and more secure, but requires unique names if run multiple times
       - name: Archive Production Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: node-project-artifact
           path: |

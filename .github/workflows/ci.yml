@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code (Updated to v4)
+      # 1. Checkout code
       - uses: actions/checkout@v4
 
-      # 2. Install NodeJS (Updated to v4)
+      # 2. Install NodeJS
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -27,8 +27,7 @@ jobs:
       - name: Run Lint
         run: npm run lint
 
-      # 5. Create Artifact (Updated to v4)
-      # v4 is faster and more secure, but requires unique names if run multiple times
+      # 5. Create Artifact
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v4
         with:
